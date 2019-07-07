@@ -28,6 +28,7 @@ class CameraVC: UIViewController {
     var photoData: Data?
     
     var flashControlState: FlashState = .off
+    var inputPridiction:String?
     
     var speechSynthesizer = AVSpeechSynthesizer()
     
@@ -35,9 +36,7 @@ class CameraVC: UIViewController {
 
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var captureImageView: RoudedShadowImageView!
-//    
-//    @IBOutlet weak var confidenceLbl: UILabel!
-//    @IBOutlet weak var identificationLbl: UILabel!
+
     @IBOutlet weak var flashBtn: UIButton!
     
     @IBOutlet weak var roundedLblView: UIView!
@@ -45,6 +44,8 @@ class CameraVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("camera\(inputPridiction!)")
         
         var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
@@ -137,15 +138,15 @@ class CameraVC: UIViewController {
 
                 let identification = classification.identifier
                 let confidence = Int(classification.confidence * 100)
-                self.presentDetail()
+//                self.presentDetail()
 
                 DispatchQueue.main.async {
-                    
+                
                     let completeSentence = "Hey you found \(identification)"
                     self.synthesizeSpeech(fromString:completeSentence)
 
                 }
-                
+            
 //                let vc  = ResultVC()
 //
 //

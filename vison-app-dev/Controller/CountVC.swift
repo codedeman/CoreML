@@ -91,11 +91,12 @@ class CountVC: UIViewController {
                 let image = UIImage(named: "test.jpg")
                 thePixelBuffer = self.pixelBufferFromImage(image: image!)
                 guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
-                print("test\(prediction.classLabel)")
+                
                 synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
+                
                 DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                    
-                    
+                    self.presentDetail()
                 }
             }
         
@@ -106,10 +107,18 @@ class CountVC: UIViewController {
     
     func presentDetail() {
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
-        //
+        
+        var thePixelBuffer : CVPixelBuffer?
+        let image = UIImage(named: "test.jpg")
+        thePixelBuffer = self.pixelBufferFromImage(image: image!)
+        guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
+        
+        cameraVC.inputPridiction = prediction.classLabel
+   
         present(cameraVC, animated: true, completion: nil)
         
     }
+    
     
     func synthesizeSpeech(fromString string: String) {
         let speechUtterance = AVSpeechUtterance(string: string)
