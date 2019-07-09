@@ -33,13 +33,11 @@ class CountVC: UIViewController {
 
         let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         db = Firestore.firestore()
-        fetchDocument()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchDocument()
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -66,18 +64,9 @@ class CountVC: UIViewController {
             if count == 0{
                 countLabel.isHidden = true
                 backgroundResult.isHidden = false
-                var thePixelBuffer : CVPixelBuffer?
                 
-//                let image = UIImage(named: "test.jpg")
-//
-//                thePixelBuffer = self.pixelBufferFromImage(image: image!)
-//                guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
-//
-//                synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
-//
-//                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-//
-//                }
+                fetchDocument()
+                
             }
         
             countLabel.text = String(count)
@@ -101,33 +90,41 @@ class CountVC: UIViewController {
     
     func fetchDocument() {
         
-        let docRef = db.collection("categories").document("nhQStqbx3di1QAI71xKN").addSnapshotListener { (documentSnapshot, error) in
-            
-
         
+        let collectionReference = db.collection("categories").document("nhQStqbx3di1QAI71xKN").addSnapshotListener({ (documentSnapshot, error) in
+            
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            
+            print("Current data: \(data)")
 
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                }
-                guard let data = document.data() else {
-                    print("Document data was empty.")
-                    return
-                }
-                print("Current data: \(data)")
+            
+            guard let cast = data["imageUrl"] as? String else { return }
+        
+            let url = URL(string: cast)
+            
+            
+            if let castUrl =  try? Data.init(contentsOf: url!){
                 
-                
-                guard let cast = data["imageUrl"] as? String else { return }
-                
-                let url = URL(string: cast)
-                if let castdata =  try Data.init(contentsOf: url!){
-                    
-                    let image:UIImage = UIImage(data: castdata)
-                    let thePixelBuffer : CVPixelBuffer?
-                }
+                let image:UIImage = UIImage(data: castUrl)!
+                let thePixelBuffer : CVPixelBuffer?
+                thePixelBuffer = self.pixelBufferFromImage(image: image)
+                guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
+                synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
 
-        }
-
+            }
+            
+            
+            
+            
+        })
 
     }
         
