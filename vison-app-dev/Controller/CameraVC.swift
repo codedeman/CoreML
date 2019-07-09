@@ -23,16 +23,20 @@ class CameraVC: UIViewController {
     var cameraOutput:AVCapturePhotoOutput!
     var previewLayer:AVCaptureVideoPreviewLayer!
     
-    @IBOutlet weak var scoreLbl: UILabel!
     
+    @IBOutlet weak var timerLbl: UILabel!
+    @IBOutlet weak var scoreLbl: UILabel!
     var photoData: Data?
     
     var flashControlState: FlashState = .off
     var inputPridiction:String?
     
+    @IBOutlet weak var objectDetect: UILabel!
+    
     var speechSynthesizer = AVSpeechSynthesizer()
     
     var count = 20
+    var score = 0
 
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var captureImageView: RoudedShadowImageView!
@@ -44,10 +48,9 @@ class CameraVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        objectDetect.text = "Find \(inputPridiction!)"
         
-        print("camera\(inputPridiction!)")
-        
-        var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+//        var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
         
     }
@@ -117,7 +120,7 @@ class CameraVC: UIViewController {
     @objc func update()  {
         if count > 0{
             count -= 1
-            scoreLbl.text = String(count)
+            timerLbl.text = String(count)
             
         }
     }
@@ -129,30 +132,36 @@ class CameraVC: UIViewController {
         
         
         for classification in results {
+            let identification = classification.identifier
+
             if classification.confidence < 0.5 {
                 
                 let unknownObjectMessage = "Please try again"
                 synthesizeSpeech(fromString: unknownObjectMessage)
                 break
-            } else {
+            }else if inputPridiction == identification{
 
-                let identification = classification.identifier
-                let confidence = Int(classification.confidence * 100)
-//                self.presentDetail()
 
-                DispatchQueue.main.async {
-                
+//                DispatchQueue.main.async {
+                    self.score += 1
+
+                    self.scoreLbl.text = String(self.score)
+
                     let completeSentence = "Hey you found \(identification)"
                     self.synthesizeSpeech(fromString:completeSentence)
+                
+                    print("i'm here")
 
-                }
+//                }
+                
+//                presentDetail()
+                let result = ResultVC()
+//
+//                result.modalTransitionStyle = .coverVertical
+//                result.modalPresentationStyle = .overCurrentContext
+                self.present(result, animated: true, completion: nil)
             
-//                let vc  = ResultVC()
-//
-//
-//                    vc.modalTransitionStyle = .coverVertical
-//                    vc.modalPresentationStyle = .overCurrentContext
-//                    self.present(vc, animated: true, completion: nil)
+
             
                 
                 break
@@ -165,10 +174,17 @@ class CameraVC: UIViewController {
         speechSynthesizer.speak(speechUtterance)
     }
     func presentDetail() {
-        guard let resultVC = storyboard?.instantiateViewController(withIdentifier: "popupResult") as? ResultVC else { return }
-        //
-        present(resultVC, animated: true, completion: nil)
         
+    let result = ResultVC()
+
+        result.modalTransitionStyle = .coverVertical
+        result.modalPresentationStyle = .overCurrentContext
+        self.present(result, animated: true, completion: nil)
+
+//        guard let resultVC = storyboard?.instantiateViewController(withIdentifier: "popupResult") as? ResultVC else { return }
+//        //
+//        present(resultVC, animated: true, completion: nil)
+//
         
         
     }
@@ -181,15 +197,6 @@ class CameraVC: UIViewController {
     
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

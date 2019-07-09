@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultVC" customModule="vison_app_dev" customModuleProvider="target">
             <connections>
+                <outlet property="imageOutput" destination="oeO-Kz-l78" id="cSf-xF-CLb"/>
                 <outlet property="imageResult" destination="oeO-Kz-l78" id="AhU-NC-pYw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -77,6 +78,9 @@
                 </visualEffectView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <accessibility key="accessibilityConfiguration">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <constraints>
                 <constraint firstItem="1E7-aw-mu1" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="33A-ox-0wH"/>
                 <constraint firstItem="1E7-aw-mu1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Fjk-Qc-3j5"/>

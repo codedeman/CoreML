@@ -12,6 +12,10 @@
 		180265B022CF20CE00751B97 /* CountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180265AF22CF20CD00751B97 /* CountVC.swift */; };
 		1874314922D049C20009E84A /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874314722D049C20009E84A /* ResultVC.swift */; };
 		1874314A22D049C20009E84A /* ResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1874314822D049C20009E84A /* ResultVC.xib */; };
+		18EEBA4C22D32DF400A5A2F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18EEBA4B22D32DF400A5A2F5 /* GoogleService-Info.plist */; };
+		18EEBA4F22D334E600A5A2F5 /* Firebase+Untils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBA4E22D334E600A5A2F5 /* Firebase+Untils.swift */; };
+		18EEBA5122D337E300A5A2F5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBA5022D337E200A5A2F5 /* Category.swift */; };
+		1B846709BCBE34468521CBB6 /* libPods-vison-app-dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD82E2EE5535934E8841668 /* libPods-vison-app-dev.a */; };
 		9D41AE4521BFA30E0078AF68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D41AE4421BFA30E0078AF68 /* AppDelegate.swift */; };
 		9D41AE4A21BFA30E0078AF68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D41AE4821BFA30E0078AF68 /* Main.storyboard */; };
 		9D41AE4C21BFA30E0078AF68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D41AE4B21BFA30E0078AF68 /* Assets.xcassets */; };
@@ -42,11 +46,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DD82E2EE5535934E8841668 /* libPods-vison-app-dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vison-app-dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		180265AB22CEFAB100751B97 /* ObjectClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectClassifier.mlmodel; sourceTree = "<group>"; };
 		180265AD22CF113300751B97 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		180265AF22CF20CD00751B97 /* CountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountVC.swift; sourceTree = "<group>"; };
 		1874314722D049C20009E84A /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		1874314822D049C20009E84A /* ResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultVC.xib; sourceTree = "<group>"; };
+		18EEBA4B22D32DF400A5A2F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18EEBA4E22D334E600A5A2F5 /* Firebase+Untils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Untils.swift"; sourceTree = "<group>"; };
+		18EEBA5022D337E200A5A2F5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Category.swift; path = "vison-app-dev/Untils/Category.swift"; sourceTree = SOURCE_ROOT; };
+		7524139B4FB57FE8B12ACDE8 /* Pods-vison-app-dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vison-app-dev.debug.xcconfig"; path = "Target Support Files/Pods-vison-app-dev/Pods-vison-app-dev.debug.xcconfig"; sourceTree = "<group>"; };
 		9D41AE4121BFA30E0078AF68 /* vison-app-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vison-app-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D41AE4421BFA30E0078AF68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D41AE4921BFA30E0078AF68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +72,7 @@
 		9DC8B9D521C01A0600AA59C0 /* RoundedShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowView.swift; sourceTree = "<group>"; };
 		9DC8B9D721C01F5E00AA59C0 /* RoundedShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowButton.swift; sourceTree = "<group>"; };
 		9DC8B9D921C01FB900AA59C0 /* RoudedShadowImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoudedShadowImageView.swift; sourceTree = "<group>"; };
+		CE7CC6E485A6695DCEC141C6 /* Pods-vison-app-dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vison-app-dev.release.xcconfig"; path = "Target Support Files/Pods-vison-app-dev/Pods-vison-app-dev.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B846709BCBE34468521CBB6 /* libPods-vison-app-dev.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +117,31 @@
 			path = XIB;
 			sourceTree = "<group>";
 		};
+		18EEBA4A22D32DB000A5A2F5 /* google-service */ = {
+			isa = PBXGroup;
+			children = (
+				18EEBA4B22D32DF400A5A2F5 /* GoogleService-Info.plist */,
+			);
+			path = "google-service";
+			sourceTree = "<group>";
+		};
+		18EEBA4D22D334BA00A5A2F5 /* Untils */ = {
+			isa = PBXGroup;
+			children = (
+				18EEBA4E22D334E600A5A2F5 /* Firebase+Untils.swift */,
+			);
+			path = Untils;
+			sourceTree = "<group>";
+		};
+		1A529ED2C676F4609BE0738D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7524139B4FB57FE8B12ACDE8 /* Pods-vison-app-dev.debug.xcconfig */,
+				CE7CC6E485A6695DCEC141C6 /* Pods-vison-app-dev.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9D41AE3821BFA30E0078AF68 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +150,8 @@
 				9D41AE5821BFA30E0078AF68 /* vison-app-devTests */,
 				9D41AE6321BFA30E0078AF68 /* vison-app-devUITests */,
 				9D41AE4221BFA30E0078AF68 /* Products */,
+				1A529ED2C676F4609BE0738D /* Pods */,
+				E831C6CD252699E3B1D64805 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +168,8 @@
 		9D41AE4321BFA30E0078AF68 /* vison-app-dev */ = {
 			isa = PBXGroup;
 			children = (
+				18EEBA4D22D334BA00A5A2F5 /* Untils */,
+				18EEBA4A22D32DB000A5A2F5 /* google-service */,
 				180265AA22CEFA7F00751B97 /* Resources */,
 				9D41AE7421BFA42B0078AF68 /* Models */,
 				9D41AE7321BFA4180078AF68 /* Views */,
@@ -185,8 +225,17 @@
 		9D41AE7421BFA42B0078AF68 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				18EEBA5022D337E200A5A2F5 /* Category.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E831C6CD252699E3B1D64805 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DD82E2EE5535934E8841668 /* libPods-vison-app-dev.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,9 +245,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D41AE6921BFA30E0078AF68 /* Build configuration list for PBXNativeTarget "vison-app-dev" */;
 			buildPhases = (
+				97D8EA01BFB61C8F9E025263 /* [CP] Check Pods Manifest.lock */,
 				9D41AE3D21BFA30E0078AF68 /* Sources */,
 				9D41AE3E21BFA30E0078AF68 /* Frameworks */,
 				9D41AE3F21BFA30E0078AF68 /* Resources */,
+				52FA1D9ECD7B019297D6D1D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EEBA4C22D32DF400A5A2F5 /* GoogleService-Info.plist in Resources */,
 				9D41AE4F21BFA30E0078AF68 /* LaunchScreen.storyboard in Resources */,
 				1874314A22D049C20009E84A /* ResultVC.xib in Resources */,
 				9D41AE4C21BFA30E0078AF68 /* Assets.xcassets in Resources */,
@@ -319,6 +371,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		52FA1D9ECD7B019297D6D1D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vison-app-dev/Pods-vison-app-dev-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vison-app-dev/Pods-vison-app-dev-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97D8EA01BFB61C8F9E025263 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vison-app-dev-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9D41AE3D21BFA30E0078AF68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -331,8 +430,10 @@
 				9D41AE7621BFA5610078AF68 /* CameraVC.swift in Sources */,
 				9DC8B9D621C01A0600AA59C0 /* RoundedShadowView.swift in Sources */,
 				9DC8B9D821C01F5E00AA59C0 /* RoundedShadowButton.swift in Sources */,
+				18EEBA4F22D334E600A5A2F5 /* Firebase+Untils.swift in Sources */,
 				1874314922D049C20009E84A /* ResultVC.swift in Sources */,
 				9DC8B9DA21C01FB900AA59C0 /* RoudedShadowImageView.swift in Sources */,
+				18EEBA5122D337E300A5A2F5 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,11 +597,12 @@
 		};
 		9D41AE6A21BFA30E0078AF68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7524139B4FB57FE8B12ACDE8 /* Pods-vison-app-dev.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PBBT599Q77;
 				INFOPLIST_FILE = "vison-app-dev/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kienphamdev.vison-app-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -511,11 +613,12 @@
 		};
 		9D41AE6B21BFA30E0078AF68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE7CC6E485A6695DCEC141C6 /* Pods-vison-app-dev.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PBBT599Q77;
 				INFOPLIST_FILE = "vison-app-dev/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kienphamdev.vison-app-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";

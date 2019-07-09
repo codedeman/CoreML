@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import CoreML
 import Vision
+import Firebase
 
 
 
@@ -19,55 +20,37 @@ class CountVC: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backgroundResult: UIView!
     var speechSynthesizer = AVSpeechSynthesizer()
-    
-    
-//    let request = VNCoreMLRequest(model: model) { [weak self] request, error in
-//        guard let results = request.results as? [VNClassificationObservation],
-//            let topResult = results.first else {
-//                fatalError("unexpected result type from VNCoreMLRequest")
-//        }
-//
-//        // Update UI on main queue
-//        let article = (self?.vowels.contains(topResult.identifier.first!))! ? "an" : "a"
-//        DispatchQueue.main.async { [weak self] in
-//
-//
-//        }
-//    }
-    
-//    let model = try? VNCoreMLModel(for: ObjectClassifier().model)
-    
-    
-//    lazy var classificationRequest:VNCoreMLRequest = {
-//
-//        do{
-//            guard let model = try? VNCoreMLModel(for: ObjectClassifier().model) else {
-//                fatalError("can't load Places ML model")
-//            }
-//            let request = VNCoreMLRequest(model: model, completionHandler: { (request, error) in
-//                print("request\(request)")
-//                self.processClassifications(for: request, error: error)
-//            })
-//
-//            return request
-//        }catch{
-//            fatalError("Failed to load Core ML Model: \(error)")
-//        }
-//    }()
-
     var count = 3
+    var db : Firestore!
+    var listener:ListenerRegistration!
+    var categories = [Category]()
+    var identifier:Category!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundResult.isHidden = true
+//        print("url view didload\(identifier.imageUrl)")
         
         let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-            let image = UIImage(named: "test.jpg")
-//        var thePixelBuffer : CVPixelBuffer?
-//        thePixelBuffer = self.pixelBufferFromImage(image: image!)
-//        guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
-//        print("test\(prediction.classLabel)")
+        db = Firestore.firestore()
+        fetchDocument()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchDocument()
 
+//        print("url\(identifier.imageUrl)")
+
+        
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+
+        
     }
     
     @objc func update()
@@ -88,7 +71,9 @@ class CountVC: UIViewController {
                 countLabel.isHidden = true
                 backgroundResult.isHidden = false
                 var thePixelBuffer : CVPixelBuffer?
+                
                 let image = UIImage(named: "test.jpg")
+                
                 thePixelBuffer = self.pixelBufferFromImage(image: image!)
                 guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
                 
@@ -96,7 +81,6 @@ class CountVC: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                    
-                    self.presentDetail()
                 }
             }
         
@@ -119,6 +103,25 @@ class CountVC: UIViewController {
         
     }
     
+    func fetchDocument()  {
+        
+        let docRef = db.collection("categories").document("nhQStqbx3di1QAI71xKN")
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, (document.data() != nil) {
+                
+                print("Document data:\(document["imageUrl"]!)")
+                
+                
+                
+            } else {
+                print("Document does not exist")
+            }
+        }
+
+
+    }
+    
     
     func synthesizeSpeech(fromString string: String) {
         let speechUtterance = AVSpeechUtterance(string: string)
@@ -127,16 +130,10 @@ class CountVC: UIViewController {
     
     @available(iOS 11.0, *)
 
-    func debugPrint(sentences:String){
-        
-        print(sentences)
-        
-        
-    }
+   
     func processClassifications(for request: VNRequest, error: Error?){
         
         DispatchQueue.main.async {
-            
             
             guard let results =  request.results as? [VNClassificationObservation] else {
                 fatalError("can't load Places ML model")
@@ -151,11 +148,6 @@ class CountVC: UIViewController {
                 
             }
         }
-        
-       
-        
-      
-        
         
     }
     

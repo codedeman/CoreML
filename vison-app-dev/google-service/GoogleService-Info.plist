@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>876183559857-ectb4o026u8cflu5b5s7ce0jo0au88ti.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.876183559857-ectb4o026u8cflu5b5s7ce0jo0au88ti</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC99zlVamdEwq9fMcfdXLTpZ2kMQiFQ-i8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>876183559857</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kienphamdev.vison-app-dev</string>
+	<key>PROJECT_ID</key>
+	<string>visionapp-4b1c4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>visionapp-4b1c4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:876183559857:ios:04b6c2b34212b74b</string>
+	<key>DATABASE_URL</key>
+	<string>https://visionapp-4b1c4.firebaseio.com</string>
+</dict>
+</plist>
