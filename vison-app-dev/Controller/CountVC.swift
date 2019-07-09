@@ -11,14 +11,14 @@ import AVFoundation
 import CoreML
 import Vision
 import Firebase
-
-
+import Kingfisher
 
 @available(iOS 11.0, *)
 class CountVC: UIViewController {
     
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backgroundResult: UIView!
+    // variable
     var speechSynthesizer = AVSpeechSynthesizer()
     var count = 3
     var db : Firestore!
@@ -29,8 +29,8 @@ class CountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundResult.isHidden = true
-//        print("url view didload\(identifier.imageUrl)")
-        
+        speechSynthesizer.delegate = self
+
         let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         db = Firestore.firestore()
         fetchDocument()
@@ -40,18 +40,14 @@ class CountVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchDocument()
-
-//        print("url\(identifier.imageUrl)")
-
-        
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        speechSynthesizer.delegate = self
 
-        
     }
+    
     
     @objc func update()
     {
@@ -72,16 +68,16 @@ class CountVC: UIViewController {
                 backgroundResult.isHidden = false
                 var thePixelBuffer : CVPixelBuffer?
                 
-                let image = UIImage(named: "test.jpg")
-                
-                thePixelBuffer = self.pixelBufferFromImage(image: image!)
-                guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
-                
-                synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
-                
-                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-                   
-                }
+//                let image = UIImage(named: "test.jpg")
+//
+//                thePixelBuffer = self.pixelBufferFromImage(image: image!)
+//                guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
+//
+//                synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
+//
+//                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+//
+//                }
             }
         
             countLabel.text = String(count)
@@ -103,21 +99,38 @@ class CountVC: UIViewController {
         
     }
     
-    func fetchDocument()  {
+    func fetchDocument() {
         
-        let docRef = db.collection("categories").document("nhQStqbx3di1QAI71xKN")
+        let docRef = db.collection("categories").document("nhQStqbx3di1QAI71xKN").addSnapshotListener { (documentSnapshot, error) in
+            
+
         
-        docRef.getDocument { (document, error) in
-            if let document = document, (document.data() != nil) {
+
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                print("Current data: \(data)")
                 
-                print("Document data:\(document["imageUrl"]!)")
                 
+                guard let cast = data["imageUrl"] as? String else { return }
                 
-                
-            } else {
-                print("Document does not exist")
-            }
+                let url = URL(string: cast)
+                if let castdata =  try Data.init(contentsOf: url!){
+                    
+                    let image:UIImage = UIImage(data: castdata)
+                    let thePixelBuffer : CVPixelBuffer?
+                }
+
         }
+
+
+    }
+        
 
 
     }
@@ -125,7 +138,7 @@ class CountVC: UIViewController {
     
     func synthesizeSpeech(fromString string: String) {
         let speechUtterance = AVSpeechUtterance(string: string)
-        speechSynthesizer.speak(speechUtterance)
+        
     }
     
     @available(iOS 11.0, *)
@@ -159,18 +172,10 @@ class CountVC: UIViewController {
     
 
     
-}
+
 @available(iOS 11.0, *)
 extension CountVC{
-    
-    func detectScene(image: CIImage) {
-        
-//        let model = ObjectClassifierInput.self
-        // Load the ML model through its generated class
-//        guard let model = try? VNCoreMLModel(for: ObjectClassifierInput(image: <#CVPixelBuffer#>)) else {
-//            fatalError("can't load Places ML model")
-//        }
-    }
+  
     func pixelBufferFromImage(image: UIImage) -> CVPixelBuffer {
         
         let ciimage = CIImage(image: image)
@@ -213,5 +218,14 @@ extension CountVC{
         return pxbuffer!;
     
     }
+    
+}
+extension CountVC:AVSpeechSynthesizerDelegate{
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        
+        
+    }
+
     
 }

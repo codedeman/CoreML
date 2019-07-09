@@ -175,18 +175,11 @@ class CameraVC: UIViewController {
     }
     func presentDetail() {
         
-    let result = ResultVC()
-
+        let result = ResultVC()
         result.modalTransitionStyle = .coverVertical
         result.modalPresentationStyle = .overCurrentContext
         self.present(result, animated: true, completion: nil)
 
-//        guard let resultVC = storyboard?.instantiateViewController(withIdentifier: "popupResult") as? ResultVC else { return }
-//        //
-//        present(resultVC, animated: true, completion: nil)
-//
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -231,8 +224,7 @@ extension CameraVC: AVCapturePhotoCaptureDelegate {
 extension CameraVC: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         self.cameraView.isUserInteractionEnabled = true
-//        self.spinner.isHidden = true
-//        self.spinner.stopAnimating()
+
     }
 }
 
