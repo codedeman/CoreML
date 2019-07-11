@@ -49,12 +49,13 @@ class CameraVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("find+++++++\(inputPridiction)")
-//        objectDetect.text = "Find \(inputPridiction!)"
-        
-//        var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        DispatchQueue.main.async {
+            
+            self.objectDetect.text = "Find \(self.inputPridiction!)"
 
-        
+            
+        }
+
     }
     
     
@@ -135,39 +136,46 @@ class CameraVC: UIViewController {
         
         for classification in results {
             let identification = classification.identifier
+            
+                            let completeSentence = "Hey you found \(identification)"
 
-            if classification.confidence < 0.5 {
-                
+//            print("hey yo")
+
+            if classification.confidence < 0.5 || classification.identifier != inputPridiction{
+
                 let unknownObjectMessage = "Please try again"
                 synthesizeSpeech(fromString: unknownObjectMessage)
                 break
-            }else if inputPridiction == inputPridiction{
-
-
-//                DispatchQueue.main.async {
+            }else{
+                
                     self.score += 1
-
+                
                     self.scoreLbl.text = String(self.score)
-
+                
                     let completeSentence = "Hey you found \(identification)"
                     self.synthesizeSpeech(fromString:completeSentence)
-                
-                    print("i'm here")
-
-//                }
-                
-//                presentDetail()
-                let result = ResultVC()
-//
-//                result.modalTransitionStyle = .coverVertical
-//                result.modalPresentationStyle = .overCurrentContext
-                self.present(result, animated: true, completion: nil)
-            
-
-            
-                
+                    presentDetail(found:foundinputPridiction!)
                 break
             }
+            
+//            if inputPridiction != inputPridiction{
+//
+//                    let completeSentence = "I'm seeing \(identification)"
+//                    self.synthesizeSpeech(fromString:completeSentence)
+//
+//                break
+//            }else if classification.confidence > 0.5{
+//
+//                self.score += 1
+//
+//                self.scoreLbl.text = String(self.score)
+//
+//                let completeSentence = "Hey you found \(identification)"
+//                self.synthesizeSpeech(fromString:completeSentence)
+//
+//                print("i'm here")
+//
+//            }
         }
     }
     
@@ -175,9 +183,10 @@ class CameraVC: UIViewController {
         let speechUtterance = AVSpeechUtterance(string: string)
         speechSynthesizer.speak(speechUtterance)
     }
-    func presentDetail() {
+    func presentDetail(found:String) {
         
-        let result = ResultVC()
+        let result = FinishGameVC()
+        result.found = found
         result.modalTransitionStyle = .coverVertical
         result.modalPresentationStyle = .overCurrentContext
         self.present(result, animated: true, completion: nil)
