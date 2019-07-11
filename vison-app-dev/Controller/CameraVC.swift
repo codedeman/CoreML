@@ -48,7 +48,9 @@ class CameraVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        objectDetect.text = "Find \(inputPridiction!)"
+        
+        print("find+++++++\(inputPridiction)")
+//        objectDetect.text = "Find \(inputPridiction!)"
         
 //        var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
@@ -139,7 +141,7 @@ class CameraVC: UIViewController {
                 let unknownObjectMessage = "Please try again"
                 synthesizeSpeech(fromString: unknownObjectMessage)
                 break
-            }else if inputPridiction == identification{
+            }else if inputPridiction == inputPridiction{
 
 
 //                DispatchQueue.main.async {

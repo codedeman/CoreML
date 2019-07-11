@@ -13,3 +13,7 @@ extension Firestore{
         return collection("categories").order(by: "timeStamp", descending: true)
     }
 }
+extension Array{
+
+    
+}

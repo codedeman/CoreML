@@ -116,6 +116,7 @@
                     <connections>
                         <outlet property="backgroundResult" destination="WJ2-j7-Yws" id="qG0-hu-9id"/>
                         <outlet property="countLabel" destination="RF9-pa-Fxx" id="HUE-2y-TgK"/>
+                        <outlet property="findLbl" destination="od7-ck-qyV" id="UMk-yF-2Tu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdg-8v-5De" userLabel="First Responder" sceneMemberID="firstResponder"/>

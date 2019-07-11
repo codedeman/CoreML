@@ -16,6 +16,7 @@ import Kingfisher
 @available(iOS 11.0, *)
 class CountVC: UIViewController {
     
+    @IBOutlet weak var findLbl: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backgroundResult: UIView!
     // variable
@@ -25,6 +26,7 @@ class CountVC: UIViewController {
     var listener:ListenerRegistration!
     var categories = [Category]()
     var identifier:Category!
+    var imageArr = [Data]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class CountVC: UIViewController {
 
         let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         db = Firestore.firestore()
+        fetchDocument()
 
     }
     
@@ -44,6 +47,10 @@ class CountVC: UIViewController {
         super.viewDidDisappear(animated)
 //        speechSynthesizer.delegate = self
 
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        listener.remove()
     }
     
     
@@ -65,7 +72,27 @@ class CountVC: UIViewController {
                 countLabel.isHidden = true
                 backgroundResult.isHidden = false
                 
-                fetchDocument()
+        
+                getPredict { (image) in
+
+                    let thePixelBuffer : CVPixelBuffer?
+                    thePixelBuffer = self.pixelBufferFromImage(image: image)
+                    guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
+                    synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
+                    self.findLbl.text = prediction.classLabel
+
+                    DispatchQueue.global().asyncAfter(wallDeadline: .now()+1, execute: {
+
+                        self.presentDetail(predict: prediction.classLabel)
+
+                    })
+//
+
+                }
+                
+                
+                
+                
                 
             }
         
@@ -74,63 +101,114 @@ class CountVC: UIViewController {
     
     }
     
-    func presentDetail() {
+    func presentDetail(predict:String) {
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
         
-        var thePixelBuffer : CVPixelBuffer?
-        let image = UIImage(named: "test.jpg")
-        thePixelBuffer = self.pixelBufferFromImage(image: image!)
-        guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
+       
         
-        cameraVC.inputPridiction = prediction.classLabel
+        cameraVC.inputPridiction = predict
    
         present(cameraVC, animated: true, completion: nil)
         
     }
     
-    func fetchDocument() {
+    func getPredict(handler:@escaping(_ prediction:UIImage)->())
+    {
         
-        
-        let collectionReference = db.collection("categories").document("nhQStqbx3di1QAI71xKN").addSnapshotListener({ (documentSnapshot, error) in
+        let collectionReference = db.collection("categories").addSnapshotListener({ (documentSnapshot, error) in
+            var arr = [Data]()
             
-            guard let document = documentSnapshot else {
+            guard let document = documentSnapshot?.documents else {
                 print("Error fetching document: \(error!)")
                 return
             }
             
-            guard let data = document.data() else {
-                print("Document data was empty.")
-                return
-            }
-            
-            print("Current data: \(data)")
-
-            
-            guard let cast = data["imageUrl"] as? String else { return }
-        
-            let url = URL(string: cast)
-            
-            
-            if let castUrl =  try? Data.init(contentsOf: url!){
+            for document in document{
                 
-                let image:UIImage = UIImage(data: castUrl)!
-                let thePixelBuffer : CVPixelBuffer?
-                thePixelBuffer = self.pixelBufferFromImage(image: image)
-                guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
-                synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
+                let data = document.data()
+//                DispatchQueue.global(qos: .background).async {
+                
+                    guard let urlString = data["imageUrl"] as? String else { return }
+                    let url = URL(string: urlString)
 
+                    if let convertData = try? Data.init(contentsOf: url!){
+                        
+                        arr.append(convertData)
+                        
+                    }
+                    
+//                }
+                
             }
+            let randomIndex = Int(arc4random_uniform(UInt32(arr.count)))
+            let image = UIImage(data: arr[randomIndex])
+            handler(image!)
+            
+            
+            
+            
+//            let randomIndex = Int(arc4random_uniform(UInt32(arr.count)))
+//            DispatchQueue.main.async {
+//
+//                let image = UIImage(data:arr[randomIndex] )
+//
+//                handler(image!)
+//            }
             
             
             
             
         })
-
-    }
         
-
+        
+    
+    }
+    
+    func fetchDocument(){
+        
+        let collectionReference = db.collection("categories").addSnapshotListener({ (documentSnapshot, error) in
+            var arr = [Data]()
+            
+            guard let document = documentSnapshot?.documents else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            for document in document{
+                
+                let data = document.data()
+//                DispatchQueue.global(qos: .background).async {
+                
+                    guard let urlString = data["imageUrl"] as? String else { return }
+                    let url = URL(string: urlString)
+                    
+                    if let convertData = try? Data.init(contentsOf: url!){
+                        
+                        self.imageArr.append(convertData)
+                        
+                    }
+                    
+//                }
+            
+            }
+            
+            
+            print("+++\(self.imageArr)")
+            
+            
+            
+            
+            
+            
+        })
+        
+    }
+    
+    
 
     }
+
+
     
     
     func synthesizeSpeech(fromString string: String) {
