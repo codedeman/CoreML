@@ -14,17 +14,33 @@ class FinishGameVC: UIViewController {
     @IBOutlet weak var foundResultLbl: UILabel!
     
     @IBAction func nextRoundBtn(_ sender: Any) {
-        let nexRound = CountVC()
-        nexRound.modalTransitionStyle = .coverVertical
-        nexRound.modalPresentationStyle = .overCurrentContext
-        self.present(nexRound, animated: true, completion: nil)
+        
+        presentDetail()
+//        let nexRound = CountVC()
+//        nexRound.modalTransitionStyle = .coverVertical
+//        nexRound.modalPresentationStyle = .overCurrentContext
+//        self.present(nexRound, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        foundResultLbl.text  = "You found the \() Timer increase"
+        foundResultLbl.text  = "You found the \(found!) Timer increase"
 
         // Do any additional setup after loading the view.
+    }
+    
+    func presentDetail() {
+        let nexRound = CountVC()
+//        nexRound.count = 3
+        
+
+//        guard let nexRound = storyboard?.instantiateViewController(withIdentifier: "CountVC") as? CountVC else { return }
+        
+        
+//        nexRound.inputPridiction = predict
+        
+        present(nexRound, animated: true, completion: nil)
+        
     }
 
 

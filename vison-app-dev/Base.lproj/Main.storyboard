@@ -63,7 +63,7 @@
         <!--CountVC-->
         <scene sceneID="MOV-pE-wx6">
             <objects>
-                <viewController id="OIf-Qf-m4B" customClass="CountVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CountVC" id="OIf-Qf-m4B" customClass="CountVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPP-OF-h1A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

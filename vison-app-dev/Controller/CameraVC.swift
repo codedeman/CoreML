@@ -53,7 +53,6 @@ class CameraVC: UIViewController {
             
             self.objectDetect.text = "Find \(self.inputPridiction!)"
 
-            
         }
 
     }
@@ -62,10 +61,13 @@ class CameraVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         previewLayer.frame = cameraView.bounds
-        
         speechSynthesizer.delegate = self
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.objectDetect.text = ""
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCameraView))
@@ -137,7 +139,7 @@ class CameraVC: UIViewController {
         for classification in results {
             let identification = classification.identifier
             
-                            let completeSentence = "Hey you found \(identification)"
+                let completeSentence = "Hey you found \(identification)"
 
 //            print("hey yo")
 
@@ -154,7 +156,7 @@ class CameraVC: UIViewController {
                 
                     let completeSentence = "Hey you found \(identification)"
                     self.synthesizeSpeech(fromString:completeSentence)
-                    presentDetail(found:foundinputPridiction!)
+                    presentDetail(found:inputPridiction!)
                 break
             }
             

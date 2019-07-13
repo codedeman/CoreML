@@ -28,7 +28,7 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="BP8-d7-eB7">
-                    <rect key="frame" x="20" y="244" width="384" height="232.5"/>
+                    <rect key="frame" x="20" y="244" width="384" height="230"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwq-mN-tMD">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="98"/>
@@ -36,16 +36,16 @@
                             <state key="normal" title="👍"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You found the item Timer increase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4r-HZ-GXS">
-                            <rect key="frame" x="0.0" y="135" width="384" height="20.5"/>
+                            <rect key="frame" x="0.0" y="135" width="384" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="277" id="xZE-72-ETp"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="popupResult" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REc-df-zFq">
-                            <rect key="frame" x="0.0" y="192.5" width="384" height="40"/>
+                            <rect key="frame" x="0.0" y="190" width="384" height="40"/>
                             <color key="backgroundColor" red="1" green="0.24749048339999999" blue="0.85290772039999996" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Mw4-79-muR"/>

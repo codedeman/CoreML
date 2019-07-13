@@ -27,43 +27,67 @@ class CountVC: UIViewController {
     var categories = [Category]()
     var identifier:Category!
     var imageArr = [Data]()
-    
+    var number:Int?
+    var prediction:ObjectClassifier!
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundResult.isHidden = true
+       
         speechSynthesizer.delegate = self
 
         let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         db = Firestore.firestore()
-        fetchDocument()
+
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if count == nil {
+            count = 3
+        }
+
+        print("count \(count)")
+        
+    
+
+//        self.backgroundResult.isHidden = true
+        
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+      
 //        speechSynthesizer.delegate = self
 
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        listener.remove()
+        
+        
+        
+        
     }
     
     
     @objc func update()
     {
-    
-        if count > 0{
+
+
+        print("test count\(count)")
+//        if count.val{
+        
+            if count > 0{
+                
             count -= 1
-            
+                
+                
+                
             if count == 2{
-               self.view.backgroundColor = #colorLiteral(red: 0.9608203769, green: 0.5931894183, blue: 0.1159928367, alpha: 1)
+                self.view.backgroundColor = #colorLiteral(red: 0.9608203769, green: 0.5931894183, blue: 0.1159928367, alpha: 1)
+//                exit(0)
             }
-            
+                
             if count == 1{
                 self.view.backgroundColor = #colorLiteral(red: 0, green: 0.9244301915, blue: 0, alpha: 1)
             }
@@ -71,46 +95,55 @@ class CountVC: UIViewController {
             if count == 0{
                 countLabel.isHidden = true
                 backgroundResult.isHidden = false
-                
-        
                 getPredict { (image) in
-
+                    
                     let thePixelBuffer : CVPixelBuffer?
                     thePixelBuffer = self.pixelBufferFromImage(image: image)
                     guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
                     synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
                     self.findLbl.text = prediction.classLabel
-
+                    print("predict\(prediction.classLabel)")
+                    
                     DispatchQueue.global().asyncAfter(wallDeadline: .now()+1, execute: {
-
+                        
                         self.presentDetail(predict: prediction.classLabel)
-
+                        
+                        
                     })
-//
-
+                    
                 }
                 
-                
-                
-                
-                
             }
-        
-            countLabel.text = String(count)
+                
+//                countLabel.text = String(count)
+
+            
         }
+    
+
+            
+    
+//    }
+     
+        
     
     }
     
     func presentDetail(predict:String) {
+        
+        
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
         
        
         
         cameraVC.inputPridiction = predict
    
-        present(cameraVC, animated: true, completion: nil)
+        present(cameraVC, animated:
+            true, completion: nil)
         
     }
+    
+  
     
     func getPredict(handler:@escaping(_ prediction:UIImage)->())
     {
@@ -126,7 +159,6 @@ class CountVC: UIViewController {
             for document in document{
                 
                 let data = document.data()
-//                DispatchQueue.global(qos: .background).async {
                 
                     guard let urlString = data["imageUrl"] as? String else { return }
                     let url = URL(string: urlString)
@@ -137,27 +169,11 @@ class CountVC: UIViewController {
                         
                     }
                     
-//                }
                 
             }
             let randomIndex = Int(arc4random_uniform(UInt32(arr.count)))
             let image = UIImage(data: arr[randomIndex])
             handler(image!)
-            
-            
-            
-            
-//            let randomIndex = Int(arc4random_uniform(UInt32(arr.count)))
-//            DispatchQueue.main.async {
-//
-//                let image = UIImage(data:arr[randomIndex] )
-//
-//                handler(image!)
-//            }
-            
-            
-            
-            
         })
         
         
@@ -195,11 +211,6 @@ class CountVC: UIViewController {
             
             print("+++\(self.imageArr)")
             
-            
-            
-            
-            
-            
         })
         
     }
@@ -207,6 +218,7 @@ class CountVC: UIViewController {
     
 
     }
+
 
 
     
