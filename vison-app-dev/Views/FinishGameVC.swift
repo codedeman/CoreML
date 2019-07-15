@@ -14,7 +14,8 @@ class FinishGameVC: UIViewController {
     @IBOutlet weak var foundResultLbl: UILabel!
     
     @IBAction func nextRoundBtn(_ sender: Any) {
-        
+//        performSegue(withIdentifier: "CountVC" , sender: self)
+
         presentDetail()
 //        let nexRound = CountVC()
 //        nexRound.modalTransitionStyle = .coverVertical
@@ -25,12 +26,16 @@ class FinishGameVC: UIViewController {
         super.viewDidLoad()
         
         foundResultLbl.text  = "You found the \(found!) Timer increase"
+        
 
         // Do any additional setup after loading the view.
     }
     
     func presentDetail() {
         let nexRound = CountVC()
+        
+//        nexRound.countLabel?.isHidden = false
+//        nexRound.backgroundResult?.isHidden = false
 //        nexRound.count = 3
         
 
@@ -42,16 +47,14 @@ class FinishGameVC: UIViewController {
         present(nexRound, animated: true, completion: nil)
         
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "CountVC"{
+            guard let destination  = segue.destination as? CountVC else{return}
+            
+        }
     }
-    */
 
+
+ 
 }

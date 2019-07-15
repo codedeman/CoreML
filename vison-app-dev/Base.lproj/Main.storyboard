@@ -63,7 +63,7 @@
         <!--CountVC-->
         <scene sceneID="MOV-pE-wx6">
             <objects>
-                <viewController storyboardIdentifier="CountVC" id="OIf-Qf-m4B" customClass="CountVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CountVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OIf-Qf-m4B" customClass="CountVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aPP-OF-h1A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdg-8v-5De" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="-322.48875562218893"/>
+            <point key="canvasLocation" x="-314" y="-467"/>
         </scene>
         <!--CameraVC-->
         <scene sceneID="tne-QT-ifu">
@@ -234,12 +234,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="668" y="-288"/>
+            <point key="canvasLocation" x="169" y="-116"/>
         </scene>
-        <!--View Controller-->
+        <!--ResultVC-->
+        <scene sceneID="a74-dX-g32">
+            <objects>
+                <viewController storyboardIdentifier="ResultVC" id="Q3V-Wi-zot" customClass="ResultVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OGH-Fl-ZNL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="FPf-zf-9Nl">
+                                <rect key="frame" x="8" y="120" width="359" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="AeE-jr-7DP"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-jK-q2M">
+                                <rect key="frame" x="65.5" y="225.5" width="244.5" height="216"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJc-8k-iBn">
+                                        <rect key="frame" x="0.0" y="0.0" width="244.5" height="98"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                        <state key="normal" title="👍"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You found the item Timer increase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fi9-IM-Ekk">
+                                        <rect key="frame" x="0.0" y="128" width="244.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="popupResult" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCu-oy-8lQ">
+                                        <rect key="frame" x="0.0" y="176" width="244.5" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.24749048339999999" blue="0.85290772039999996" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="9zp-om-M4i"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                        <state key="normal" title="NEXT EMOJI">
+                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="OIf-Qf-m4B" kind="show" id="tfO-nj-Mxx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="UiD-X2-faC"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hu8-jK-q2M" firstAttribute="centerX" secondItem="OGH-Fl-ZNL" secondAttribute="centerX" id="P4m-Ts-SXs"/>
+                            <constraint firstItem="W0D-sD-7F7" firstAttribute="trailing" secondItem="FPf-zf-9Nl" secondAttribute="trailing" constant="8" id="RNI-db-bzf"/>
+                            <constraint firstItem="FPf-zf-9Nl" firstAttribute="leading" secondItem="W0D-sD-7F7" secondAttribute="leading" constant="8" id="Vvd-ta-I5D"/>
+                            <constraint firstItem="FPf-zf-9Nl" firstAttribute="top" secondItem="W0D-sD-7F7" secondAttribute="top" constant="100" id="gfN-Wt-hfD"/>
+                            <constraint firstItem="hu8-jK-q2M" firstAttribute="centerY" secondItem="OGH-Fl-ZNL" secondAttribute="centerY" id="yQK-S8-UXI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="W0D-sD-7F7"/>
+                    </view>
+                    <connections>
+                        <outlet property="foundResultLbl" destination="fi9-IM-Ekk" id="5On-qN-qNU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NRu-Jt-gIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="-407"/>
+        </scene>
+        <!--Game OverVC-->
         <scene sceneID="pSN-TW-UXV">
             <objects>
-                <viewController id="4dH-bC-ocI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameOverVC" id="4dH-bC-ocI" customClass="GameOverVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zb1-6d-O4b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -273,16 +337,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AOV-D5-CBb"/>
                     </view>
+                    <connections>
+                        <outlet property="scoreLbl" destination="GLt-3a-8Q6" id="ayB-TS-Z0O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0t8-3d-ZdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="-308"/>
+            <point key="canvasLocation" x="1948" y="-1303"/>
         </scene>
     </scenes>
     <resources>
         <image name="cup" width="30" height="30"/>
         <image name="playbutton" width="48" height="48"/>
         <image name="sound" width="50" height="50"/>
+        <image name="test" width="1024" height="1024"/>
         <image name="timer" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ouc-Vd-P3m"/>
+    </inferredMetricsTieBreakers>
 </document>

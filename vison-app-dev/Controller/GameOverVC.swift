@@ -1,28 +1,26 @@
 //
-//  ResultVC.swift
+//  GameOverVC.swift
 //  vison-app-dev
 //
-//  Created by Apple on 7/6/19.
+//  Created by Apple on 7/15/19.
 //  Copyright © 2019 Kien. All rights reserved.
 //
 
 import UIKit
 
-class ResultVC: UIViewController {
-
-    
-    @IBOutlet weak var imageOutput: UIImageView!
-    
-    @IBAction func nexRoundBtn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
+class GameOverVC: UIViewController {
+    var score:Int?
+    @IBOutlet weak var scoreLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if score != nil{
+        
+            scoreLbl.text = "\(score!)"
+        }
         // Do any additional setup after loading the view.
     }
-
+    
 
     /*
     // MARK: - Navigation

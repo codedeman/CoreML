@@ -11,101 +11,94 @@ import AVFoundation
 import CoreML
 import Vision
 import Firebase
-import Kingfisher
 
-@available(iOS 11.0, *)
 class CountVC: UIViewController {
     
-    @IBOutlet weak var findLbl: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var backgroundResult: UIView!
+    @IBOutlet weak var findLbl: UILabel?
+    @IBOutlet weak var countLabel: UILabel?
+    @IBOutlet weak var backgroundResult: UIView?
     // variable
     var speechSynthesizer = AVSpeechSynthesizer()
-    var count = 3
+    var count:Int? = 3
     var db : Firestore!
     var listener:ListenerRegistration!
     var categories = [Category]()
     var identifier:Category!
     var imageArr = [Data]()
     var number:Int?
+    var timer:Timer?
     var prediction:ObjectClassifier!
     override func viewDidLoad() {
         super.viewDidLoad()
        
         speechSynthesizer.delegate = self
 
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-        db = Firestore.firestore()
+        db =  .firestore()
 
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if count == nil {
-            count = 3
-        }
+        db =  .firestore()
 
-        print("count \(count)")
-        
-    
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
-//        self.backgroundResult.isHidden = true
+        self.backgroundResult?.isHidden = true
         
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-      
-//        speechSynthesizer.delegate = self
+//        timer?.invalidate()
+//        timer = nil
+
+        speechSynthesizer.delegate = self
 
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        
-        
-        
+     
+//        if timer != nil{
+//            timer?.invalidate()
+//            timer = nil
+//        }
+        //
     }
     
     
     @objc func update()
     {
-
-
-        print("test count\(count)")
-//        if count.val{
         
-            if count > 0{
-                
-            count -= 1
-                
-                
-                
+        if count ?? 3 > 0{
+            
+            count! -= 1
+
             if count == 2{
                 self.view.backgroundColor = #colorLiteral(red: 0.9608203769, green: 0.5931894183, blue: 0.1159928367, alpha: 1)
-//                exit(0)
             }
-                
+            
             if count == 1{
                 self.view.backgroundColor = #colorLiteral(red: 0, green: 0.9244301915, blue: 0, alpha: 1)
             }
             
             if count == 0{
-                countLabel.isHidden = true
-                backgroundResult.isHidden = false
+            
+                
+                print("test code")
+               
+                countLabel?.isHidden = true
+                backgroundResult?.isHidden = false
                 getPredict { (image) in
-                    
                     let thePixelBuffer : CVPixelBuffer?
                     thePixelBuffer = self.pixelBufferFromImage(image: image)
                     guard let prediction =  try? ObjectClassifier().prediction(image: thePixelBuffer!) else { return }
                     synthesizeSpeech(fromString: "I want you find \(prediction.classLabel)")
-                    self.findLbl.text = prediction.classLabel
+                    self.findLbl?.text = prediction.classLabel
                     print("predict\(prediction.classLabel)")
                     
-                    DispatchQueue.global().asyncAfter(wallDeadline: .now()+1, execute: {
+                    DispatchQueue.global().asyncAfter(wallDeadline: .now(), execute: {
                         
+                        print("I'm here")
                         self.presentDetail(predict: prediction.classLabel)
                         
                         
@@ -113,35 +106,38 @@ class CountVC: UIViewController {
                     
                 }
                 
+            
             }
-                
-//                countLabel.text = String(count)
+                if count != nil{
+                    
+                    
+                    countLabel?.text =  "\(count!)"
 
+                    
+                }else{
+                    debugPrint("Error")
+                }
             
+            
+            
+            
+
         }
-    
-
-            
-    
-//    }
-     
-        
     
     }
     
     func presentDetail(predict:String) {
         
-        
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
-        
-       
-        
         cameraVC.inputPridiction = predict
    
-        present(cameraVC, animated:
-            true, completion: nil)
+        present(cameraVC, animated:true, completion: nil)
         
     }
+    
+    
+    
+    
     
   
     
@@ -166,12 +162,13 @@ class CountVC: UIViewController {
                     if let convertData = try? Data.init(contentsOf: url!){
                         
                         arr.append(convertData)
-                        
+//                        break
                     }
-                    
-                
             }
+            
+            print("arr \(arr)")
             let randomIndex = Int(arc4random_uniform(UInt32(arr.count)))
+            print("random\(randomIndex)")
             let image = UIImage(data: arr[randomIndex])
             handler(image!)
         })

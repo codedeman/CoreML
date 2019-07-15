@@ -10,10 +10,10 @@
 		180265AC22CEFAB100751B97 /* ObjectClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 180265AB22CEFAB100751B97 /* ObjectClassifier.mlmodel */; };
 		180265AE22CF113300751B97 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180265AD22CF113300751B97 /* FeedVC.swift */; };
 		180265B022CF20CE00751B97 /* CountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180265AF22CF20CD00751B97 /* CountVC.swift */; };
-		1874314922D049C20009E84A /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874314722D049C20009E84A /* ResultVC.swift */; };
-		1874314A22D049C20009E84A /* ResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1874314822D049C20009E84A /* ResultVC.xib */; };
 		189D8D3522D6D55A00E27440 /* FinishGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D8D3322D6D55900E27440 /* FinishGameVC.swift */; };
 		189D8D3622D6D55A00E27440 /* FinishGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189D8D3422D6D55900E27440 /* FinishGameVC.xib */; };
+		18E49D5722DCD6960019AE3B /* GameOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E49D5622DCD6960019AE3B /* GameOverVC.swift */; };
+		18E49D5922DCE2450019AE3B /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E49D5822DCE2450019AE3B /* ResultVC.swift */; };
 		18EEBA4C22D32DF400A5A2F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18EEBA4B22D32DF400A5A2F5 /* GoogleService-Info.plist */; };
 		18EEBA4F22D334E600A5A2F5 /* Firebase+Untils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBA4E22D334E600A5A2F5 /* Firebase+Untils.swift */; };
 		18EEBA5122D337E300A5A2F5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBA5022D337E200A5A2F5 /* Category.swift */; };
@@ -52,10 +52,10 @@
 		180265AB22CEFAB100751B97 /* ObjectClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectClassifier.mlmodel; sourceTree = "<group>"; };
 		180265AD22CF113300751B97 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		180265AF22CF20CD00751B97 /* CountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountVC.swift; sourceTree = "<group>"; };
-		1874314722D049C20009E84A /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
-		1874314822D049C20009E84A /* ResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultVC.xib; sourceTree = "<group>"; };
 		189D8D3322D6D55900E27440 /* FinishGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGameVC.swift; sourceTree = "<group>"; };
 		189D8D3422D6D55900E27440 /* FinishGameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishGameVC.xib; sourceTree = "<group>"; };
+		18E49D5622DCD6960019AE3B /* GameOverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverVC.swift; sourceTree = "<group>"; };
+		18E49D5822DCE2450019AE3B /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		18EEBA4B22D32DF400A5A2F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18EEBA4E22D334E600A5A2F5 /* Firebase+Untils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Untils.swift"; sourceTree = "<group>"; };
 		18EEBA5022D337E200A5A2F5 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Category.swift; path = "vison-app-dev/Untils/Category.swift"; sourceTree = SOURCE_ROOT; };
@@ -116,7 +116,6 @@
 		1874314622D03EAE0009E84A /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				1874314822D049C20009E84A /* ResultVC.xib */,
 				189D8D3422D6D55900E27440 /* FinishGameVC.xib */,
 			);
 			path = XIB;
@@ -211,6 +210,8 @@
 				9D41AE7521BFA5610078AF68 /* CameraVC.swift */,
 				180265AD22CF113300751B97 /* FeedVC.swift */,
 				180265AF22CF20CD00751B97 /* CountVC.swift */,
+				18E49D5622DCD6960019AE3B /* GameOverVC.swift */,
+				18E49D5822DCE2450019AE3B /* ResultVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -222,7 +223,6 @@
 				9DC8B9D521C01A0600AA59C0 /* RoundedShadowView.swift */,
 				9DC8B9D721C01F5E00AA59C0 /* RoundedShadowButton.swift */,
 				9DC8B9D921C01FB900AA59C0 /* RoudedShadowImageView.swift */,
-				1874314722D049C20009E84A /* ResultVC.swift */,
 				189D8D3322D6D55900E27440 /* FinishGameVC.swift */,
 			);
 			path = Views;
@@ -356,7 +356,6 @@
 				18EEBA4C22D32DF400A5A2F5 /* GoogleService-Info.plist in Resources */,
 				189D8D3622D6D55A00E27440 /* FinishGameVC.xib in Resources */,
 				9D41AE4F21BFA30E0078AF68 /* LaunchScreen.storyboard in Resources */,
-				1874314A22D049C20009E84A /* ResultVC.xib in Resources */,
 				9D41AE4C21BFA30E0078AF68 /* Assets.xcassets in Resources */,
 				9D41AE4A21BFA30E0078AF68 /* Main.storyboard in Resources */,
 			);
@@ -432,16 +431,17 @@
 			files = (
 				180265AC22CEFAB100751B97 /* ObjectClassifier.mlmodel in Sources */,
 				180265AE22CF113300751B97 /* FeedVC.swift in Sources */,
+				18E49D5722DCD6960019AE3B /* GameOverVC.swift in Sources */,
 				180265B022CF20CE00751B97 /* CountVC.swift in Sources */,
 				9D41AE4521BFA30E0078AF68 /* AppDelegate.swift in Sources */,
 				9D41AE7621BFA5610078AF68 /* CameraVC.swift in Sources */,
 				9DC8B9D621C01A0600AA59C0 /* RoundedShadowView.swift in Sources */,
 				9DC8B9D821C01F5E00AA59C0 /* RoundedShadowButton.swift in Sources */,
 				18EEBA4F22D334E600A5A2F5 /* Firebase+Untils.swift in Sources */,
-				1874314922D049C20009E84A /* ResultVC.swift in Sources */,
 				189D8D3522D6D55A00E27440 /* FinishGameVC.swift in Sources */,
 				9DC8B9DA21C01FB900AA59C0 /* RoudedShadowImageView.swift in Sources */,
 				18EEBA5122D337E300A5A2F5 /* Category.swift in Sources */,
+				18E49D5922DCE2450019AE3B /* ResultVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

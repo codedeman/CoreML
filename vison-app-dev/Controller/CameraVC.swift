@@ -29,14 +29,15 @@ class CameraVC: UIViewController {
     var photoData: Data?
     
     var flashControlState: FlashState = .off
-    var inputPridiction:String?
     
     @IBOutlet weak var objectDetect: UILabel!
     
     var speechSynthesizer = AVSpeechSynthesizer()
-    
+    var timer:Timer?
     var count = 20
     var score = 0
+    var inputPridiction:String?
+
 
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var captureImageView: RoudedShadowImageView!
@@ -70,6 +71,9 @@ class CameraVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCameraView))
         tap.numberOfTapsRequired = 1
         
@@ -139,26 +143,34 @@ class CameraVC: UIViewController {
         for classification in results {
             let identification = classification.identifier
             
-                let completeSentence = "Hey you found \(identification)"
 
-//            print("hey yo")
-
-            if classification.confidence < 0.5 || classification.identifier != inputPridiction{
-
-                let unknownObjectMessage = "Please try again"
-                synthesizeSpeech(fromString: unknownObjectMessage)
-                break
-            }else{
-                
+                if count <= 1{
+                    
+                }
+            
+            
+                if classification.confidence < 0.5 || classification.identifier != inputPridiction {
+                    
+                    let unknownObjectMessage = "Please try again"
+                    synthesizeSpeech(fromString: unknownObjectMessage)
+                    break
+                }else{
+                    
                     self.score += 1
-                
+                    
                     self.scoreLbl.text = String(self.score)
-                
+                    
                     let completeSentence = "Hey you found \(identification)"
                     self.synthesizeSpeech(fromString:completeSentence)
-                    presentDetail(found:inputPridiction!)
-                break
-            }
+                    presentDetail(prediction: identification)
+                    break
+                }
+                
+//            }else{
+//
+//                presentGameOver(score: score)
+//            }
+
             
 //            if inputPridiction != inputPridiction{
 //
@@ -185,14 +197,29 @@ class CameraVC: UIViewController {
         let speechUtterance = AVSpeechUtterance(string: string)
         speechSynthesizer.speak(speechUtterance)
     }
-    func presentDetail(found:String) {
+    
+    
+    
+    func presentDetail(prediction:String) {
         
-        let result = FinishGameVC()
-        result.found = found
-        result.modalTransitionStyle = .coverVertical
-        result.modalPresentationStyle = .overCurrentContext
+        guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
+        
+            result.found = prediction
+  
         self.present(result, animated: true, completion: nil)
 
+    }
+    
+    func presentGameOver(score:Int)  {
+        
+        guard let gameOver = storyboard?.instantiateViewController(withIdentifier: "GameOver") as? GameOverVC else { return }
+        gameOver.score = score
+        
+        self.present(gameOver, animated: true, completion: nil)
+
+        
+
+        
     }
 
     override func didReceiveMemoryWarning() {
