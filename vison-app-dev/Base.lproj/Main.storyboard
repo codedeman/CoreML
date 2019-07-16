@@ -135,12 +135,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z25-TU-Iyn">
-                                        <rect key="frame" x="5" y="600" width="42" height="57"/>
+                                        <rect key="frame" x="10" y="600" width="42" height="57"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <state key="normal" title="💁🏼‍♀️"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey you found ⌚️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvt-hj-0Rl">
-                                        <rect key="frame" x="43.5" y="600" width="138.5" height="31"/>
+                                        <rect key="frame" x="86.5" y="600" width="138.5" height="31"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -148,10 +148,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.75153417280000001" blue="0.22750585340000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Jvt-hj-0Rl" secondAttribute="trailing" constant="193" id="0EK-Yl-o37"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jvt-hj-0Rl" secondAttribute="trailing" constant="150" id="0EK-Yl-o37"/>
                                     <constraint firstItem="Jvt-hj-0Rl" firstAttribute="top" secondItem="z25-TU-Iyn" secondAttribute="top" id="Ccb-Nr-sUv"/>
                                     <constraint firstAttribute="bottom" secondItem="Jvt-hj-0Rl" secondAttribute="bottom" constant="36" id="Hyx-Zz-Z0h"/>
-                                    <constraint firstItem="z25-TU-Iyn" firstAttribute="leading" secondItem="pmZ-ip-ndp" secondAttribute="leading" constant="5" id="OUz-2N-Wg2"/>
+                                    <constraint firstItem="z25-TU-Iyn" firstAttribute="leading" secondItem="pmZ-ip-ndp" secondAttribute="leading" constant="10" id="OUz-2N-Wg2"/>
                                     <constraint firstAttribute="bottom" secondItem="z25-TU-Iyn" secondAttribute="bottom" constant="10" id="OYw-HM-aam"/>
                                 </constraints>
                             </view>
@@ -230,6 +230,7 @@
                         <outlet property="roundedLblView" destination="Bdy-rK-G5A" id="G6M-Oq-lJL"/>
                         <outlet property="scoreLbl" destination="f7x-Se-hrV" id="Rsv-vz-4H2"/>
                         <outlet property="timerLbl" destination="GmR-ey-lMA" id="1QJ-lW-c8H"/>
+                        <segue destination="4dH-bC-ocI" kind="show" identifier="GameOver" id="VXE-ew-AC6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -275,7 +276,8 @@
                                             <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="OIf-Qf-m4B" kind="show" id="tfO-nj-Mxx"/>
+                                            <action selector="nextButtonWasPressed:" destination="Q3V-Wi-zot" eventType="touchUpInside" id="yaO-EE-qW7"/>
+                                            <segue destination="OIf-Qf-m4B" kind="show" identifier="CountVC" id="tfO-nj-Mxx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -298,12 +300,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRu-Jt-gIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1590" y="-407"/>
+            <point key="canvasLocation" x="1412" y="-144"/>
         </scene>
         <!--Game OverVC-->
         <scene sceneID="pSN-TW-UXV">
             <objects>
-                <viewController storyboardIdentifier="GameOverVC" id="4dH-bC-ocI" customClass="GameOverVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameOverVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4dH-bC-ocI" customClass="GameOverVC" customModule="vison_app_dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zb1-6d-O4b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -326,6 +328,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFY-IU-GB0">
                                         <rect key="frame" x="69.5" y="198.5" width="48" height="48"/>
                                         <state key="normal" image="playbutton"/>
+                                        <connections>
+                                            <segue destination="OIf-Qf-m4B" kind="show" id="7Yr-DL-QfH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -343,7 +348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0t8-3d-ZdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="-1303"/>
+            <point key="canvasLocation" x="1295" y="-613"/>
         </scene>
     </scenes>
     <resources>
@@ -354,6 +359,6 @@
         <image name="timer" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ouc-Vd-P3m"/>
+        <segue reference="tfO-nj-Mxx"/>
     </inferredMetricsTieBreakers>
 </document>

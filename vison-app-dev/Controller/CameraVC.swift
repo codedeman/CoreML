@@ -53,6 +53,8 @@ class CameraVC: UIViewController {
         DispatchQueue.main.async {
             
             self.objectDetect.text = "Find \(self.inputPridiction!)"
+//            self.scoreLbl.text = "\(self.score)"
+            print(" your sore:\(self.score)")
 
         }
 
@@ -131,6 +133,14 @@ class CameraVC: UIViewController {
             count -= 1
             timerLbl.text = String(count)
             
+            if count == 0{
+                
+//                presentGameOver()
+                performSegue(withIdentifier: "GameOver", sender: nil)
+
+
+            }
+            
         }
     }
     
@@ -144,52 +154,33 @@ class CameraVC: UIViewController {
             let identification = classification.identifier
             
 
-                if count <= 1{
-                    
-                }
+//                if count >= 1{
+            do{
             
-            
-                if classification.confidence < 0.5 || classification.identifier != inputPridiction {
-                    
-                    let unknownObjectMessage = "Please try again"
-                    synthesizeSpeech(fromString: unknownObjectMessage)
-                    break
-                }else{
-                    
-                    self.score += 1
-                    
-                    self.scoreLbl.text = String(self.score)
-                    
-                    let completeSentence = "Hey you found \(identification)"
-                    self.synthesizeSpeech(fromString:completeSentence)
-                    presentDetail(prediction: identification)
-                    break
-                }
+                    if classification.confidence < 0.5 || classification.identifier != inputPridiction {
+                        
+                        let unknownObjectMessage = "Please try again"
+                        synthesizeSpeech(fromString: unknownObjectMessage)
+                        break
+                    }else{
+                        
+                        self.score += 1
+                        
+                        self.scoreLbl.text = String(self.score)
+                        
+                        let completeSentence = "Hey you found \(identification)"
+                        self.synthesizeSpeech(fromString:completeSentence)
+//                        presentGameOver()
+                        presentDetail(prediction: identification,sore: score)
+                        break
+                    }
                 
-//            }else{
-//
-//                presentGameOver(score: score)
-//            }
-
+            }catch{
             
-//            if inputPridiction != inputPridiction{
-//
-//                    let completeSentence = "I'm seeing \(identification)"
-//                    self.synthesizeSpeech(fromString:completeSentence)
-//
-//                break
-//            }else if classification.confidence > 0.5{
-//
-//                self.score += 1
-//
-//                self.scoreLbl.text = String(self.score)
-//
-//                let completeSentence = "Hey you found \(identification)"
-//                self.synthesizeSpeech(fromString:completeSentence)
-//
-//                print("i'm here")
-//
-//            }
+                debugPrint("Error")
+            }
+                    
+
         }
     }
     
@@ -200,7 +191,7 @@ class CameraVC: UIViewController {
     
     
     
-    func presentDetail(prediction:String) {
+    func presentDetail(prediction:String,sore:Int) {
         
         guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
         
@@ -210,10 +201,10 @@ class CameraVC: UIViewController {
 
     }
     
-    func presentGameOver(score:Int)  {
-        
+    func presentGameOver()  {
+//        let gameOver  = GameOverVC()
         guard let gameOver = storyboard?.instantiateViewController(withIdentifier: "GameOver") as? GameOverVC else { return }
-        gameOver.score = score
+//        gameOver.score = score
         
         self.present(gameOver, animated: true, completion: nil)
 
@@ -221,6 +212,17 @@ class CameraVC: UIViewController {
 
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GameOver"{
+            guard  let destination  = segue.destination as? GameOverVC else {return}
+            destination.score = score
+//                destination.category = selectedCategory
+            
+        }
+        
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

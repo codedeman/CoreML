@@ -28,6 +28,7 @@ class CountVC: UIViewController {
     var number:Int?
     var timer:Timer?
     var prediction:ObjectClassifier!
+    var score:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -45,6 +46,8 @@ class CountVC: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
         self.backgroundResult?.isHidden = true
+        
+        print("sore in countvc \(score)")
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -96,13 +99,13 @@ class CountVC: UIViewController {
                     self.findLbl?.text = prediction.classLabel
                     print("predict\(prediction.classLabel)")
                     
-                    DispatchQueue.global().asyncAfter(wallDeadline: .now(), execute: {
+//                    DispatchQueue.global().asyncAfter(wallDeadline: .now(), execute: {
                         
                         print("I'm here")
-                        self.presentDetail(predict: prediction.classLabel)
+                    self.presentDetail(predict: prediction.classLabel,sore:self.score ?? 0)
                         
                         
-                    })
+//                    })
                     
                 }
                 
@@ -126,10 +129,11 @@ class CountVC: UIViewController {
     
     }
     
-    func presentDetail(predict:String) {
+    func presentDetail(predict:String,sore:Int) {
         
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
         cameraVC.inputPridiction = predict
+        cameraVC.score = sore
    
         present(cameraVC, animated:true, completion: nil)
         
@@ -221,7 +225,7 @@ class CountVC: UIViewController {
     
     
     func synthesizeSpeech(fromString string: String) {
-        let speechUtterance = AVSpeechUtterance(string: string)
+//        let speechUtterance = AVSpeechUtterance(string: string)
         
     }
     
