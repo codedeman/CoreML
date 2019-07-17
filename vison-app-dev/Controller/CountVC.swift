@@ -59,11 +59,7 @@ class CountVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-//        if timer != nil{
-//            timer?.invalidate()
-//            timer = nil
-//        }
-        //
+
     }
     
     
@@ -163,7 +159,6 @@ class CountVC: UIViewController {
                     if let convertData = try? Data.init(contentsOf: url!){
                         
                         arr.append(convertData)
-//                        break
                     }
             }
             

@@ -12,15 +12,19 @@ class ResultVC: UIViewController {
     
     var found:String!
     var sore:Int!
+    var image:UIImage?
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var foundResultLbl: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if found != nil{
             foundResultLbl.text  = "You found the \(found!) Timer increase"
-
+        }
         
+        if image != nil{
+            imageView.image  = image
         }
 
 

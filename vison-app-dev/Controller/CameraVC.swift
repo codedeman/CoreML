@@ -37,6 +37,8 @@ class CameraVC: UIViewController {
     var count = 20
     var score = 0
     var inputPridiction:String?
+    var stillImage: UIImage?
+
 
 
     @IBOutlet weak var cameraView: UIView!
@@ -113,17 +115,17 @@ class CameraVC: UIViewController {
         
 
         let settings = AVCapturePhotoSettings()
-        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
-        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 160, kCVPixelBufferHeightKey as String: 160]
+//        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+//        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 350, kCVPixelBufferHeightKey as String: 350]
+//
+//        settings.previewPhotoFormat = previewFormat
         
-        settings.previewPhotoFormat = previewFormat
-        
-        if flashControlState == .off {
-            settings.flashMode = .off
-        } else {
-            settings.flashMode = .on
-        }
-        
+//        if flashControlState == .off {
+//            settings.flashMode = .off
+//        } else {
+//            settings.flashMode = .on
+//        }
+//
         cameraOutput.capturePhoto(with: settings, delegate: self)
     }
     
@@ -172,6 +174,7 @@ class CameraVC: UIViewController {
 //                        presentGameOver()
                         print("score\(self.score)")
                         presentDetail(prediction: identification,sore: self.score)
+                        print("image \(self.stillImage)")
                         break
                     }
                 
@@ -193,23 +196,20 @@ class CameraVC: UIViewController {
     
     func presentDetail(prediction:String,sore:Int) {
         
-        guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
-        
-        result.found = prediction
-        result.sore = sore
-  
-        self.present(result, animated: true, completion: nil)
+//        guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
+//
+//        result.found = prediction
+//        result.sore = sore
+////        result.image = image
+//        self.present(result, animated: true, completion: nil)
 
     }
     
     func presentGameOver()  {
-//        let gameOver  = GameOverVC()
         guard let gameOver = storyboard?.instantiateViewController(withIdentifier: "GameOver") as? GameOverVC else { return }
-//        gameOver.score = score
         
         self.present(gameOver, animated: true, completion: nil)
 
-        
 
         
     }
@@ -218,7 +218,7 @@ class CameraVC: UIViewController {
         if segue.identifier == "GameOver"{
             guard  let destination  = segue.destination as? GameOverVC else {return}
             destination.score = score
-//                destination.category = selectedCategory
+            
             
         }
         
@@ -248,7 +248,6 @@ extension CameraVC: AVCapturePhotoCaptureDelegate {
                 guard let model = try? VNCoreMLModel(for: ObjectClassifier().model) else {
                     
                     fatalError("can't load Places ML model")
-
                 }
                 
                 let request = VNCoreMLRequest(model: model, completionHandler: resultsMethod)
@@ -257,7 +256,7 @@ extension CameraVC: AVCapturePhotoCaptureDelegate {
             } catch {
                 debugPrint(error)
             }
-            
+//            stillImage = UIImage(data: photoData!)
             let image = UIImage(data: photoData!)
             self.captureImageView.image = image
         }
