@@ -53,8 +53,7 @@ class CameraVC: UIViewController {
         DispatchQueue.main.async {
             
             self.objectDetect.text = "Find \(self.inputPridiction!)"
-//            self.scoreLbl.text = "\(self.score)"
-            print(" your sore:\(self.score)")
+            self.scoreLbl.text = "\(self.score)"
 
         }
 
@@ -171,7 +170,8 @@ class CameraVC: UIViewController {
                         let completeSentence = "Hey you found \(identification)"
                         self.synthesizeSpeech(fromString:completeSentence)
 //                        presentGameOver()
-                        presentDetail(prediction: identification,sore: score)
+                        print("score\(self.score)")
+                        presentDetail(prediction: identification,sore: self.score)
                         break
                     }
                 
@@ -195,7 +195,8 @@ class CameraVC: UIViewController {
         
         guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
         
-            result.found = prediction
+        result.found = prediction
+        result.sore = sore
   
         self.present(result, animated: true, completion: nil)
 

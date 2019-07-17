@@ -29,7 +29,8 @@ class ResultVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CountVC"{
             guard  let destination  = segue.destination as? CountVC else {return}
-            destination.score? = 1
+//                destination.score? = 1
+//            let c = destination.score
             
             
             
@@ -40,7 +41,19 @@ class ResultVC: UIViewController {
     
     
     @IBAction func nextButtonWasPressed(_ sender: Any) {
-        performSegue(withIdentifier: "CountVC", sender: nil)
+        
+        
+        guard let countVC = storyboard?.instantiateViewController(withIdentifier: "CountVC") as? CountVC else { return }
+        let total = sore
+        
+        countVC.score = total
+        
+        
+        present(countVC, animated:true, completion: nil)
+        
+//        performSegue(withIdentifier: "CountVC", sender: nil)
+        
+        
         
     }
     

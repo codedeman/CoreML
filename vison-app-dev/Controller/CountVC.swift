@@ -28,7 +28,7 @@ class CountVC: UIViewController {
     var number:Int?
     var timer:Timer?
     var prediction:ObjectClassifier!
-    var score:Int?
+    var score:Int!
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -47,20 +47,18 @@ class CountVC: UIViewController {
 
         self.backgroundResult?.isHidden = true
         
-        print("sore in countvc \(score)")
+
         
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        timer?.invalidate()
-//        timer = nil
 
         speechSynthesizer.delegate = self
 
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-     
+
 //        if timer != nil{
 //            timer?.invalidate()
 //            timer = nil
@@ -87,7 +85,6 @@ class CountVC: UIViewController {
             if count == 0{
             
                 
-                print("test code")
                
                 countLabel?.isHidden = true
                 backgroundResult?.isHidden = false
@@ -101,8 +98,8 @@ class CountVC: UIViewController {
                     
 //                    DispatchQueue.global().asyncAfter(wallDeadline: .now(), execute: {
                         
-                        print("I'm here")
-                    self.presentDetail(predict: prediction.classLabel,sore:self.score ?? 0)
+                    self.presentDetail(predict: prediction.classLabel, score: self.score ?? 0)
+                    print("score uicount \(self.score)")
                         
                         
 //                    })
@@ -129,11 +126,11 @@ class CountVC: UIViewController {
     
     }
     
-    func presentDetail(predict:String,sore:Int) {
+    func presentDetail(predict:String,score:Int) {
         
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
         cameraVC.inputPridiction = predict
-        cameraVC.score = sore
+        cameraVC.score = score
    
         present(cameraVC, animated:true, completion: nil)
         

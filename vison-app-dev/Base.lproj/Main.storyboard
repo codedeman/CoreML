@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxS-Ej-asc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OIf-Qf-m4B">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -277,7 +277,6 @@
                                         </state>
                                         <connections>
                                             <action selector="nextButtonWasPressed:" destination="Q3V-Wi-zot" eventType="touchUpInside" id="yaO-EE-qW7"/>
-                                            <segue destination="OIf-Qf-m4B" kind="show" identifier="CountVC" id="tfO-nj-Mxx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -359,6 +358,6 @@
         <image name="timer" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tfO-nj-Mxx"/>
+        <segue reference="7Yr-DL-QfH"/>
     </inferredMetricsTieBreakers>
 </document>
