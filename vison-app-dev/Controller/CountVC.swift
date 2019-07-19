@@ -94,8 +94,7 @@ class CountVC: UIViewController {
 //                    DispatchQueue.global().asyncAfter(wallDeadline: .now(), execute: {
                         
                     self.presentDetail(predict: prediction.classLabel, score: self.score ?? 0)
-                    print("score uicount \(self.score)")
-                        
+                    
                         
 //                    })
                     

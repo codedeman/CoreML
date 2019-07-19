@@ -28,7 +28,7 @@ class ResultVC: UIViewController {
         }
         
         if image != nil{
-            let size = CGSize(width: 30.0, height: 30.0)
+            let size = CGSize(width: 350.0, height: 350.0)
             imageView?.image = imageResize(image: image!, sizeChange: size)
         }
 
@@ -52,11 +52,11 @@ class ResultVC: UIViewController {
 //            guard  let destination  = segue.destination as? CountVC else {return}
 ////                destination.score? = 1
 ////            let c = destination.score
-//            
-//            
-//            
+//
+//
+//
 //        }
-//        
+//
 //    }
     
     
