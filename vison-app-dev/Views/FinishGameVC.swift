@@ -50,7 +50,7 @@ class FinishGameVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CountVC"{
-            guard let destination  = segue.destination as? CountVC else{return}
+            guard segue.destination is CountVC else{return}
             
         }
     }

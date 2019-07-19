@@ -159,9 +159,9 @@
                                 <rect key="frame" x="0.0" y="30" width="375" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sZ-26-m4R">
-                                        <rect key="frame" x="20" y="20" width="100" height="16"/>
+                                        <rect key="frame" x="20" y="20" width="80" height="16"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="r4v-qE-ZmS"/>
+                                            <constraint firstAttribute="width" constant="80" id="r4v-qE-ZmS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -227,6 +227,7 @@
                         <outlet property="cameraView" destination="pmZ-ip-ndp" id="JfU-an-t2N"/>
                         <outlet property="captureImageView" destination="4WR-Xe-cnZ" id="W8c-bY-dVb"/>
                         <outlet property="objectDetect" destination="7sZ-26-m4R" id="fCS-Ef-upd"/>
+                        <outlet property="predictLbl" destination="Jvt-hj-0Rl" id="u0z-cc-Vwl"/>
                         <outlet property="roundedLblView" destination="Bdy-rK-G5A" id="G6M-Oq-lJL"/>
                         <outlet property="scoreLbl" destination="f7x-Se-hrV" id="Rsv-vz-4H2"/>
                         <outlet property="timerLbl" destination="GmR-ey-lMA" id="1QJ-lW-c8H"/>
@@ -277,7 +278,6 @@
                                 <rect key="frame" x="8" y="120" width="359" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="UNS-QP-IaM"/>
-                                    <constraint firstAttribute="width" constant="350" id="uHM-9O-b9j"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-jK-q2M">

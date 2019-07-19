@@ -23,6 +23,7 @@ class CameraVC: UIViewController {
     var cameraOutput:AVCapturePhotoOutput!
     var previewLayer:AVCaptureVideoPreviewLayer!
     
+    @IBOutlet weak var predictLbl: UILabel!
     
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var scoreLbl: UILabel!
@@ -172,6 +173,8 @@ class CameraVC: UIViewController {
                         self.scoreLbl.text = String(self.score)
                         
                         let completeSentence = "Hey you found \(identification)"
+                        
+                        predictLbl.text = completeSentence
                         self.synthesizeSpeech(fromString:completeSentence)
 //                        presentGameOver()
                         print("score\(self.score)")

@@ -170,45 +170,13 @@ class CountVC: UIViewController {
         
     
     }
-    
-    func fetchDocument(){
-        
-        let collectionReference = db.collection("categories").addSnapshotListener({ (documentSnapshot, error) in
-            var arr = [Data]()
-            
-            guard let document = documentSnapshot?.documents else {
-                print("Error fetching document: \(error!)")
-                return
-            }
-            
-            for document in document{
-                
-                let data = document.data()
-//                DispatchQueue.global(qos: .background).async {
-                
-                    guard let urlString = data["imageUrl"] as? String else { return }
-                    let url = URL(string: urlString)
-                    
-                    if let convertData = try? Data.init(contentsOf: url!){
-                        
-                        self.imageArr.append(convertData)
-                        
-                    }
-                    
-//                }
-            
-            }
-            
-            
-            print("+++\(self.imageArr)")
-            
-        })
-        
-    }
+  
     
     
 
     }
+
+
 
 
 
@@ -228,8 +196,7 @@ class CountVC: UIViewController {
             
             guard let results =  request.results as? [VNClassificationObservation] else {
                 fatalError("can't load Places ML model")
-                return
-                
+
             }
             
             for classification in results {
