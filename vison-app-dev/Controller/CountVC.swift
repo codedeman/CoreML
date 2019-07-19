@@ -81,7 +81,6 @@ class CountVC: UIViewController {
             if count == 0{
             
                 
-               
                 countLabel?.isHidden = true
                 backgroundResult?.isHidden = false
                 getPredict { (image) in

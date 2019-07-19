@@ -115,6 +115,9 @@ class CameraVC: UIViewController {
         
 
         let settings = AVCapturePhotoSettings()
+//        let videoConnection = cameraOutput.connection(with: AVMediaType.video)
+//        cameraOutput.ca
+//        cameraOutput.capture
 //        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
 //        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 350, kCVPixelBufferHeightKey as String: 350]
 //
@@ -125,6 +128,8 @@ class CameraVC: UIViewController {
 //        } else {
 //            settings.flashMode = .on
 //        }
+        
+        print("image here:\(stillImage)")
 //
         cameraOutput.capturePhoto(with: settings, delegate: self)
     }
@@ -156,7 +161,7 @@ class CameraVC: UIViewController {
             
 
 //                if count >= 1{
-            do{
+//            do{
             
                     if classification.confidence < 0.5 || classification.identifier != inputPridiction {
                         
@@ -173,16 +178,18 @@ class CameraVC: UIViewController {
                         self.synthesizeSpeech(fromString:completeSentence)
 //                        presentGameOver()
                         print("score\(self.score)")
-                        presentDetail(prediction: identification,sore: self.score)
-                        print("image \(self.stillImage)")
+                        let image = UIImage(data: photoData!)
+                        
+                        presentDetail(prediction:identification , sore: score, image: image!)
+                        
                         break
                     }
                 
-            }catch{
-            
-                debugPrint("Error")
-            }
-                    
+//            }catch{
+//
+//                debugPrint("Error")
+//            }
+                
 
         }
     }
@@ -194,16 +201,24 @@ class CameraVC: UIViewController {
     
     
     
-    func presentDetail(prediction:String,sore:Int) {
+    func presentDetail(prediction:String,sore:Int,image:UIImage) {
         
-//        guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
-//
-//        result.found = prediction
-//        result.sore = sore
-////        result.image = image
-//        self.present(result, animated: true, completion: nil)
+        guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
+
+        result.found = prediction
+        result.sore = sore
+        result.image = image
+        self.present(result, animated: true, completion: nil)
 
     }
+    
+//    func getImage(withIamge image:UIImage,  getcomplete:@escaping (_imageView:UIImage)->()){
+//
+//        if image != nil{
+//
+//            presentDetail(prediction: image, sore: <#T##Int#>)
+//        }
+//    }
     
     func presentGameOver()  {
         guard let gameOver = storyboard?.instantiateViewController(withIdentifier: "GameOver") as? GameOverVC else { return }
@@ -211,7 +226,6 @@ class CameraVC: UIViewController {
         self.present(gameOver, animated: true, completion: nil)
 
 
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -229,6 +243,8 @@ class CameraVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     
     
@@ -250,15 +266,18 @@ extension CameraVC: AVCapturePhotoCaptureDelegate {
                     fatalError("can't load Places ML model")
                 }
                 
+                
                 let request = VNCoreMLRequest(model: model, completionHandler: resultsMethod)
                 let handler = VNImageRequestHandler(data: photoData!)
                 try handler.perform([request])
             } catch {
                 debugPrint(error)
             }
-//            stillImage = UIImage(data: photoData!)
+            stillImage = UIImage(data: photoData!)
             let image = UIImage(data: photoData!)
             self.captureImageView.image = image
+//            performSegue(withIdentifier: "ResultVC", sender: nil)
+//            print("++++\(stillImage)")
         }
     }
 }
