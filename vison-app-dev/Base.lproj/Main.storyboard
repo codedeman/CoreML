@@ -245,7 +245,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="FPf-zf-9Nl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banana2" translatesAutoresizingMaskIntoConstraints="NO" id="FPf-zf-9Nl">
                                 <rect key="frame" x="17" y="120" width="350" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="UNS-QP-IaM"/>
@@ -352,10 +352,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="banana2" width="2040" height="1443"/>
         <image name="cup" width="30" height="30"/>
         <image name="playbutton" width="48" height="48"/>
         <image name="sound" width="50" height="50"/>
-        <image name="test" width="1024" height="1024"/>
         <image name="timer" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>

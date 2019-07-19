@@ -14,7 +14,11 @@ class ResultVC: UIViewController {
     var sore:Int!
     var image:UIImage?
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView?{
+        didSet{
+
+        }
+    }
     @IBOutlet weak var foundResultLbl: UILabel!
 
     override func viewDidLoad() {
@@ -24,23 +28,36 @@ class ResultVC: UIViewController {
         }
         
         if image != nil{
-            imageView.image  = image
+            let size = CGSize(width: 30.0, height: 30.0)
+            imageView?.image = imageResize(image: image!, sizeChange: size)
         }
 
 
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CountVC"{
-            guard  let destination  = segue.destination as? CountVC else {return}
-//                destination.score? = 1
-//            let c = destination.score
-            
-            
-            
-        }
+    func imageResize (image:UIImage, sizeChange:CGSize)-> UIImage{
         
+        let hasAlpha = true
+        let scale: CGFloat = 0.0 // Use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage!
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "CountVC"{
+//            guard  let destination  = segue.destination as? CountVC else {return}
+////                destination.score? = 1
+////            let c = destination.score
+//            
+//            
+//            
+//        }
+//        
+//    }
     
     
     
@@ -55,7 +72,6 @@ class ResultVC: UIViewController {
         
         present(countVC, animated:true, completion: nil)
         
-//        performSegue(withIdentifier: "CountVC", sender: nil)
         
         
         

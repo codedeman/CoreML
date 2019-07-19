@@ -115,13 +115,11 @@ class CameraVC: UIViewController {
         
 
         let settings = AVCapturePhotoSettings()
-//        let videoConnection = cameraOutput.connection(with: AVMediaType.video)
-//        cameraOutput.ca
-//        cameraOutput.capture
-//        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
-//        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 350, kCVPixelBufferHeightKey as String: 350]
-//
-//        settings.previewPhotoFormat = previewFormat
+        
+        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 350, kCVPixelBufferHeightKey as String: 350]
+
+        settings.previewPhotoFormat = previewFormat
         
 //        if flashControlState == .off {
 //            settings.flashMode = .off
@@ -129,7 +127,6 @@ class CameraVC: UIViewController {
 //            settings.flashMode = .on
 //        }
         
-        print("image here:\(stillImage)")
 //
         cameraOutput.capturePhoto(with: settings, delegate: self)
     }
@@ -204,7 +201,7 @@ class CameraVC: UIViewController {
     func presentDetail(prediction:String,sore:Int,image:UIImage) {
         
         guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
-
+//        image =  CGSize(width: 300, height: 300)
         result.found = prediction
         result.sore = sore
         result.image = image
@@ -273,7 +270,7 @@ extension CameraVC: AVCapturePhotoCaptureDelegate {
             } catch {
                 debugPrint(error)
             }
-            stillImage = UIImage(data: photoData!)
+//            stillImage = UIImage(data: photoData!)
             let image = UIImage(data: photoData!)
             self.captureImageView.image = image
 //            performSegue(withIdentifier: "ResultVC", sender: nil)

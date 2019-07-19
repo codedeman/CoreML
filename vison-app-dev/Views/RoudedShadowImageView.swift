@@ -19,3 +19,16 @@ class RoudedShadowImageView: UIImageView {
    
 
 }
+
+extension UIImage{
+   func scaleImageTosize(image:UIImage,size:CGSize)->UIImage{
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        
+        let scaleImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return scaleImage
+    }
+    
+}
