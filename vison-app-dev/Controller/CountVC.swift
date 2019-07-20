@@ -17,6 +17,8 @@ class CountVC: UIViewController {
     @IBOutlet weak var findLbl: UILabel?
     @IBOutlet weak var countLabel: UILabel?
     @IBOutlet weak var backgroundResult: UIView?
+    
+    @IBOutlet weak var timerIncreaseLbl: UILabel!
     // variable
     var speechSynthesizer = AVSpeechSynthesizer()
     var count:Int? = 3
@@ -27,11 +29,13 @@ class CountVC: UIViewController {
     var imageArr = [Data]()
     var number:Int?
     var timer:Timer?
+    var timerDynamic:Int?
     var prediction:ObjectClassifier!
     var score:Int!
+    var second  =  20;
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        timerIncreaseLbl.text =  "in under \(timerDynamic ?? 20) seconds"
         speechSynthesizer.delegate = self
 
         db =  .firestore()
@@ -46,7 +50,6 @@ class CountVC: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
         self.backgroundResult?.isHidden = true
-        
 
         
     }
@@ -125,9 +128,30 @@ class CountVC: UIViewController {
         guard let cameraVC = storyboard?.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC else { return }
         cameraVC.inputPridiction = predict
         cameraVC.score = score
+        
+        
+        if timerDynamic != nil {
+            let timer = timerIncrease(timer:second)
+            print("count\(timer)")
+            
+            cameraVC.timerDynamic  = timer
+
+        
+        }else{
+        
+            cameraVC.timerDynamic = 20
+        
+        }
    
         present(cameraVC, animated:true, completion: nil)
         
+    }
+    
+    func timerIncrease(timer:Int)->Int
+    {
+    
+        let timeCount = timerDynamic!+timer
+        return timeCount
     }
     
     
@@ -140,6 +164,7 @@ class CountVC: UIViewController {
     {
         
         let collectionReference = db.collection("categories").addSnapshotListener({ (documentSnapshot, error) in
+            
             var arr = [Data]()
             
             guard let document = documentSnapshot?.documents else {

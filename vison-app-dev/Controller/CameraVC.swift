@@ -35,7 +35,7 @@ class CameraVC: UIViewController {
     
     var speechSynthesizer = AVSpeechSynthesizer()
     var timer:Timer?
-    var count = 20
+    var timerDynamic:Int?
     var score = 0
     var inputPridiction:String?
     var stillImage: UIImage?
@@ -122,22 +122,16 @@ class CameraVC: UIViewController {
 
         settings.previewPhotoFormat = previewFormat
         
-//        if flashControlState == .off {
-//            settings.flashMode = .off
-//        } else {
-//            settings.flashMode = .on
-//        }
-        
-//
+
         cameraOutput.capturePhoto(with: settings, delegate: self)
     }
     
     @objc func update()  {
-        if count > 0{
-            count -= 1
-            timerLbl.text = String(count)
+        if  timerDynamic ?? 20 > 0{
+            timerDynamic! -= 1
+            timerLbl.text = String(timerDynamic!)
             
-            if count == 0{
+            if timerDynamic == 0{
                 
 //                presentGameOver()
                 performSegue(withIdentifier: "GameOver", sender: nil)
@@ -208,6 +202,7 @@ class CameraVC: UIViewController {
         result.found = prediction
         result.sore = sore
         result.image = image
+        result.count = timerDynamic!
         self.present(result, animated: true, completion: nil)
 
     }

@@ -13,6 +13,7 @@ class ResultVC: UIViewController {
     var found:String!
     var sore:Int!
     var image:UIImage?
+    var count:Int?
     
     @IBOutlet weak var imageView: UIImageView?{
         didSet{
@@ -67,9 +68,13 @@ class ResultVC: UIViewController {
         guard let countVC = storyboard?.instantiateViewController(withIdentifier: "CountVC") as? CountVC else { return }
         let total = sore
         
+        
         countVC.score = total
+        countVC.timerDynamic  = count
         
+       
         
+
         present(countVC, animated:true, completion: nil)
         
         
