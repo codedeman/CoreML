@@ -10,6 +10,8 @@
 		180265AC22CEFAB100751B97 /* ObjectClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 180265AB22CEFAB100751B97 /* ObjectClassifier.mlmodel */; };
 		180265AE22CF113300751B97 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180265AD22CF113300751B97 /* FeedVC.swift */; };
 		180265B022CF20CE00751B97 /* CountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180265AF22CF20CD00751B97 /* CountVC.swift */; };
+		1865A73422E5B040002C0FE4 /* RecordVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A73322E5B040002C0FE4 /* RecordVideoVC.swift */; };
+		1865A73622E5BEF6002C0FE4 /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A73522E5BEF6002C0FE4 /* VideoPlaybackViewController.swift */; };
 		189D8D3522D6D55A00E27440 /* FinishGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D8D3322D6D55900E27440 /* FinishGameVC.swift */; };
 		189D8D3622D6D55A00E27440 /* FinishGameVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189D8D3422D6D55900E27440 /* FinishGameVC.xib */; };
 		18E49D5722DCD6960019AE3B /* GameOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E49D5622DCD6960019AE3B /* GameOverVC.swift */; };
@@ -53,6 +55,8 @@
 		180265AB22CEFAB100751B97 /* ObjectClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectClassifier.mlmodel; sourceTree = "<group>"; };
 		180265AD22CF113300751B97 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		180265AF22CF20CD00751B97 /* CountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountVC.swift; sourceTree = "<group>"; };
+		1865A73322E5B040002C0FE4 /* RecordVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVideoVC.swift; sourceTree = "<group>"; };
+		1865A73522E5BEF6002C0FE4 /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		189D8D3322D6D55900E27440 /* FinishGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGameVC.swift; sourceTree = "<group>"; };
 		189D8D3422D6D55900E27440 /* FinishGameVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishGameVC.xib; sourceTree = "<group>"; };
 		18E49D5622DCD6960019AE3B /* GameOverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverVC.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				180265AF22CF20CD00751B97 /* CountVC.swift */,
 				18E49D5622DCD6960019AE3B /* GameOverVC.swift */,
 				18E49D5822DCE2450019AE3B /* ResultVC.swift */,
+				1865A73322E5B040002C0FE4 /* RecordVideoVC.swift */,
+				1865A73522E5BEF6002C0FE4 /* VideoPlaybackViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -439,9 +445,11 @@
 				9D41AE4521BFA30E0078AF68 /* AppDelegate.swift in Sources */,
 				9D41AE7621BFA5610078AF68 /* CameraVC.swift in Sources */,
 				9DC8B9D621C01A0600AA59C0 /* RoundedShadowView.swift in Sources */,
+				1865A73422E5B040002C0FE4 /* RecordVideoVC.swift in Sources */,
 				9DC8B9D821C01F5E00AA59C0 /* RoundedShadowButton.swift in Sources */,
 				18EEBA4F22D334E600A5A2F5 /* Firebase+Untils.swift in Sources */,
 				189D8D3522D6D55A00E27440 /* FinishGameVC.swift in Sources */,
+				1865A73622E5BEF6002C0FE4 /* VideoPlaybackViewController.swift in Sources */,
 				9DC8B9DA21C01FB900AA59C0 /* RoudedShadowImageView.swift in Sources */,
 				18E49D5B22DD7D110019AE3B /* Constants.swift in Sources */,
 				18EEBA5122D337E300A5A2F5 /* Category.swift in Sources */,

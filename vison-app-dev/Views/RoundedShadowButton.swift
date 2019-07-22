@@ -17,6 +17,17 @@ class RoundedShadowButton: UIButton {
         self.layer.cornerRadius = 15
         
     }
+    
    
 
+}
+
+extension UIButton{
+
+    func cycleButton()
+    {
+        self.layer.cornerRadius = 15
+        
+    
+    }
 }

@@ -40,8 +40,6 @@ class CameraVC: UIViewController {
     var inputPridiction:String?
     var stillImage: UIImage?
 
-
-
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var captureImageView: RoudedShadowImageView!
 
@@ -133,7 +131,6 @@ class CameraVC: UIViewController {
             
             if timerDynamic == 0{
                 
-//                presentGameOver()
                 performSegue(withIdentifier: "GameOver", sender: nil)
 
 
@@ -152,8 +149,6 @@ class CameraVC: UIViewController {
             let identification = classification.identifier
             
 
-//                if count >= 1{
-//            do{
             
                     if classification.confidence < 0.5 || classification.identifier != inputPridiction {
                         
@@ -170,7 +165,6 @@ class CameraVC: UIViewController {
                         
                         predictLbl.text = completeSentence
                         self.synthesizeSpeech(fromString:completeSentence)
-//                        presentGameOver()
                         print("score\(self.score)")
                         let image = UIImage(data: photoData!)
                         
@@ -179,11 +173,7 @@ class CameraVC: UIViewController {
                         break
                     }
                 
-//            }catch{
-//
-//                debugPrint("Error")
-//            }
-                
+
 
         }
     }
@@ -198,7 +188,6 @@ class CameraVC: UIViewController {
     func presentDetail(prediction:String,sore:Int,image:UIImage) {
         
         guard let result = storyboard?.instantiateViewController(withIdentifier: "ResultVC") as? ResultVC else { return }
-//        image =  CGSize(width: 300, height: 300)
         result.found = prediction
         result.sore = sore
         result.image = image

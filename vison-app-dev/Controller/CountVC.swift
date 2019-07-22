@@ -107,10 +107,8 @@ class CountVC: UIViewController {
             }
                 if count != nil{
                     
-                    
                     countLabel?.text =  "\(count!)"
 
-                    
                 }else{
                     debugPrint("Error")
                 }
@@ -132,7 +130,6 @@ class CountVC: UIViewController {
         
         if timerDynamic != nil {
             let timer = timerIncrease(timer:second)
-            print("count\(timer)")
             
             cameraVC.timerDynamic  = timer
 
@@ -162,8 +159,11 @@ class CountVC: UIViewController {
     
     func getPredict(handler:@escaping(_ prediction:UIImage)->())
     {
+//        let collectionReference = db.collection("categories").addSnapshotListener({ (documentSnapshot, error) in
+
+        let collectionReference = db.collection("categories")
         
-        let collectionReference = db.collection("categories").addSnapshotListener({ (documentSnapshot, error) in
+        listener = collectionReference.addSnapshotListener({ (documentSnapshot, error) in
             
             var arr = [Data]()
             
@@ -185,7 +185,6 @@ class CountVC: UIViewController {
                     }
             }
             
-            print("arr \(arr)")
             let randomIndex = Int(arc4random_uniform(UInt32(arr.count)))
             print("random\(randomIndex)")
             let image = UIImage(data: arr[randomIndex])
